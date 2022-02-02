@@ -194,5 +194,64 @@ npm install -g yarn
 
 ===============================================
 
+Node project
 
+sample> npm init --y
+sample> code .
+
+package.json
+
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+* dependencies
+	==> any 3rd module required in production code also
+	==> example react, lodash, jquery
+	"dependencies": {
+   		 "lodash": "^4.17.21"
+  	}
+
+  	any version equal or greater than ^4.17.21
+  	exact version "4.17.21"
+  	major version has to be "4", minor and patch can change  ~4.17.21
+
+
+* devDependencies
+	==> 3rd party librires required in development stage only
+	==> unit testing libraries ==> [mocha, chai, jest, jasmine]
+	==> e2e testing libraries ==> [ protractor, cypress]
+	==> static code analylis ==> ESLint
+
+"node_modules" folder where "dependencies" and "devDependencies" are downloaded
+
+===========
+
+sample> npm i lodash
+sample> npm i -D mocha chai request
+
+or yarn -D mocha chai request
+
+==
+
+npm uninstall mocha
+
+npm i mocha@5.1.2
+
+======================================
+
+download project:
+sample> npm i
+checks package.json and downloads dependencies and "devDependencies"
+
+=====================
 
