@@ -255,3 +255,302 @@ checks package.json and downloads dependencies and "devDependencies"
 
 =====================
 
+NodeJS by default uses "commonJS" module sytem
+
+Module System: ==> CommonJS, ES6 , AMD
+
+=============
+
+TypeScript
+
+Global install typescript compiler
+
+npm i -g typescript
+
+TypeScript compiler into "users/AppData/Roaming/npm" 
+
+"tsc" ==> typescript compiler
+
+a.ts
+...
+
+tsc a.ts
+==> generate a.js
+
+===========================
+
+TypeScript is a superset of JS
+* provide type system for JavaScript ==> statically typed
+* To enhance code quality and understandability
+* catch erros at compiletime rathar than at runtime
+* sort of documentation
+
+* Read Many Write once
+
+Basic Types: string, number, boolean
+
+var name:string = "Gopal";
+
+name = 34; // error by tsc
+
+let age:number = 21;
+
+var status:boolean = true;
+
+status = false;
+
+=========
+
+Complex types: enum, object, array
+
+enum Color {
+	RED,
+	GREEN,
+	BLUE
+}
+
+let clr:Color = Color.GREEN;
+
+--
+Object type
+
+let person : {
+	name:string,
+	age: number
+} = {
+	name: "Larry",
+	age: 45
+};
+
+console.log(person.name, person.age);
+
+Array type:
+
+let people: { 
+	name:string,
+	age: number
+} [] = [
+	{
+		name: "Larry",
+		age: 45
+	},
+	{
+		name: "Leena",
+		age: 41
+	}];
+
+
+Function type:
+function add(a: number , b: number) : number | string {
+	return a + b;
+}
+
+console.log(add(4,5));
+console.log(add("4",5)); // error by TSC
+
+--------------------
+
+"any" type
+
+let data:any = 0;
+data = "Sample";
+data = true;
+
+// any type
+function doTask(callback:any) {
+ callback();
+}
+
+doTask(100);
+
+at runtime we get error and not by "tsc"
+
+
+"unknown" type
+// any type
+function doTask(callback:unknown) {
+ callback();
+}
+
+doTask(100);
+
+will lead to "tsc" errors
+
+to use "unknown" type we need to do typechecking
+Solution:
+
+function doTask(callback:unknown) {
+	if(typeof callback === "function") {
+		callback();		
+	} else if (typeof callback === "number") {
+		console.log(callback);
+	}
+ 
+}
+doTask(100);
+
+----------------------------------
+
+npm i -g ts-node
+
+ts-node a.ts
+
+npx tsc a.ts
+npx ts-node a.ts
+
+=================
+
+"optional properties"
+
+function print(obj : {first :string, last? :string}) {
+
+}
+
+print({first: "Gopal"});
+print({first: "Gopal", last: "Krishna"});
+
+
+====
+
+"type"
+
+type Person = {
+	name:string,
+	age: number
+};
+
+let p : Person   = {
+	name: "Larry",
+	age: 45
+};
+
+
+let people: Person[];
+
+==================
+
+Interface type instead of Type
+
+* Interface as shape similar to type
+
+interface Person {
+	name:string,
+	age: number
+}
+
+function print(obj: Person) {
+	console.log(obj.name, obj.age);
+}
+
+* interface for realization relationship
+
+interface Shape {
+	draw();
+}
+
+class Circle implements Shape {
+	...
+	draw() {
+
+	}
+}
+
+class Rectangle implements Shape {
+	...
+	draw() {
+
+	}
+}
+
+* interface is extendable
+
+interface Dance {
+	dance();
+}
+
+
+interface Fight extends Dance {
+	fight();
+}
+
+
+class Actor implements Fight {
+	fight() { }
+	dance() { }
+}
+
+=================
+
+Type Assertions : "as"
+
+// some 3rd party js library
+function getPerson() {
+	return {};
+}
+
+
+my ts file:
+
+interface Person {
+	firstName: string,
+	lastName: string
+}
+
+let person = getPerson();
+person.firstName = "" ; // error person 'firstName' does not exist
+
+Solution
+
+let person = getPerson() as Person;
+person.firstName = "A"; // ok
+
+<button id="okbtn">Click</button>
+
+const btn = document.getElementById("okbtn") as HTMLButtonElement;
+btn.backgroundColor = 'red'; 
+
+====================================================
+
+
+Using "in" operator for Narrowing
+
+type Circle = {
+	radius : number;
+}
+
+type Rectangle = {
+	width : number;
+	height: number;
+}
+
+function computeArea(shape: Circle | Rectangle) {
+	if("radius" in shape) {
+
+		} else if ("width" in shape) {
+
+		}
+}
+
+===========
+
+TypeScript REST parameters
+
+
+function getTotal(...numbers: number[]) :number {
+	let total: number = 0;
+	numbers.forEach(n => total + n);
+	return total;
+}
+
+console.log(getTotal()); // 0
+console.log(getTotal(10,20)); // 30
+console.log(getTotal(10, 20, 30)); // 60
+
+without
+
+let data:number[] = [5,6,2,3,2,1];
+getTotal(data);
+
+
+
+
