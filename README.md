@@ -551,6 +551,35 @@ without
 let data:number[] = [5,6,2,3,2,1];
 getTotal(data);
 
+=================
+
+let data:numbers[] = [5,3,2,11];
+
+let {x, ...others} = data;
+
+x will be 5
+others = [ 3,2,11]
+
+==========
+let data = [5,6];
+
+let ref= data; // reference
+
+ref[0] = 100;
+
+data[0] will also be 100
+
+let clone = [...data]; // copy of data
+
+===
+
+let p = {"first" : "Raj", "age" : 23 };
+
+let duplicate = {...p} ; // copy of object
+
+==============================================================
+
+
 
 
 
