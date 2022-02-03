@@ -5,6 +5,7 @@ function fibanocci(no:number) : number {
 
 type FunctionType<T, R> = (arg:T) => R;
 
+// OCP with Memoize
 function memoize<T,R>(fn:FunctionType<T, R>) {
 	var cache:{T?, R?} = {};
 	return function(args) {
@@ -16,6 +17,9 @@ function memoize<T,R>(fn:FunctionType<T, R>) {
 }
 
 var memFib  = memoize(fibanocci);
+// var memGetEmp = memoize(getEmployee);
+// memGetEmp(5); ==> API call
+// memGetEmp(5); ==> get from cache
 
 console.time("first");
  console.log(memFib  (34));

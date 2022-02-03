@@ -787,6 +787,155 @@ console.log(fiveAdder(5)); // 10
 
 =============================================
 
+getEmp(5); ==> REST api call ==> server ==> DB ==> server ==> json
+
+getEmp(5); ==> cache
+
+fibanocci(34) ==> compute and store in cache
+fibanocci(34) ==> get from cache
+
+
+function fibanocci(no:number) : number {
+ return no ==0 || no === 1 ? no : fibanocci(no - 1) +  fibanocci(no - 2);
+}
+
+console.time("first");
+ console.log(fibanocci(34));
+console.timeEnd("first");
+
+console.time("sec");
+ console.log(fibanocci(34));
+console.timeEnd("sec");
+
+==============
+
+Memoization pattern:In computing, memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again
+
+React.memo(); 
+
+=======================
+
+
+RSS ==> Resident Set Size
+Stack , Heap [ New Generation, Old Generation]
+
+==================================
+
+JavaScript in TypeScript
+
+Approach 1)
+
+index.html
+
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+my.ts
+declare var random:any;
+
+function doTask(){
+	console.log(random(1,100));
+}
+
+
+ Approach 2)
+ using typings.d.ts
+
+declare module 'lodash' {
+    export function random(min:number, max:number);
+}
+
+example.ts
+
+import {random} from 'lodash';
+
+function doTask(){
+	console.log(random(1,100));
+}
+
+
+Approach 3)
+ https://github.com/DefinitelyTyped/DefinitelyTyped
+
+ npm i lodash @types/lodash
+
+ npm i @types/node
+
+ don't need typings.d.ts
+
+ ========================================
+ Webpack
+
+ webpackexample> npm init --y
+
+ webpackexample> yarn add webpack webpack-cli webpack-dev-server typescript ts-loader html-webpack-plugin -D
+
+
+JavaScript Build Tools:
+* Grunt
+* Gulp
+* Webpack
+
+Grunt is a JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, 
+uglify, compilation, unit testing, and linting, bundle, ...
+
+Webpack ==> default coming from scafolliding code of REACT, Angular , ...
+
+webpackexample>tsc --init
+creates tsconfig.json
+
+===
+export default class Person {
+    private name:string;
+    private age:number;
+    constructor(name:string, age:number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    getName():string {
+        return this.name;
+    }
+    getAge():number {
+        return this.age;
+    }
+}
+
+===
+
+ constructor(private name:string, private age:number) {
+  }
+
+========
+package.json
+
+ "scripts": {
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
+  
+}
+
+npm run dev
+ 
+
+asset bundle.js 3.96 KiB [emitted] (name: main)    
+./src/index.ts 513 bytes [built] [code generated]  
+./src/compute.ts 248 bytes [built] [code generated]
+./src/Person.ts 429 bytes [built] [code generated] 
+webpack 5.68.0 compiled successfully in 6575 ms    
+
+--
+npm run prod
+ 
+asset bundle.js 892 bytes [emitted] [minimized] (name: main)
+./src/index.ts 513 bytes [built] [code generated]
+./src/compute.ts 248 bytes [built] [code generated]
+./src/Person.ts 429 bytes [built] [code generated]
+webpack 5.68.0 compiled successfully in 3929 ms
+
+==> minify, uglify
+
+
+
 
 
 
