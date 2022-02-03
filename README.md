@@ -758,3 +758,35 @@ map(transformFn) ==> transformed data
 filter(predicate) ==> subset
 
 
+https://rxmarbles.com/
+
+============================
+
+
+HOF ==> Function return a Function ==> Closure
+Whenever a function returns a function; returned function has access to all the members of outer function
+using Closure [ scope pointer]
+
+pure function:
+function add(x, y) {
+	return x + y;
+}
+
+HOF:
+
+function adder(base) {
+	return function(no) {
+		return base + no;
+	}
+}
+
+let fiveAdder = adder(5);
+
+console.log(fiveAdder(2)); // 7
+console.log(fiveAdder(5)); // 10
+
+=============================================
+
+
+
+
