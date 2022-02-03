@@ -935,6 +935,28 @@ webpack 5.68.0 compiled successfully in 3929 ms
 ==> minify, uglify
 
 
+https://createapp.dev/
+
+==================
+
+HtmlWebpackPlugin
+The HtmlWebpackPlugin simplifies creation of HTML files to serve your webpack bundles.
+This is especially useful for webpack bundles that include a hash in the filename which changes every compilation.
+
+main.dgdg334sdf22.js
+vendor.sdfsdf2324.js
+runtime.dw34sr33.js
+
+<script src="main.dgdg334sdf22.js"></script>
+<script src="vendor.sdfsdf2324.js"></script>
+
+=======================
+
+
+
+
+
+
 
 
 
