@@ -695,10 +695,66 @@ fetch(.../departments)
 Async and Await ==> simplifiy using Promise API
 
 
+interface User {
+ id:number,
+ name:string
+}
+
+async function fetchData(id:number): Promise<User> {
+	const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+	const json = await response.json();
+	return json;
+}
+ 
+fetchData(2).then(user => console.log(user));
+
+console.log("not blocked!!!");
+
+// tsc --lib ES2015,dom asyncExample.ts
+// node asyncExample.js won't work
+
+
+===================================================
+
+
+High Order Functions in TypeScript
+
+* function accepts function as argument
+* function returning a function
+
+Generics <>
+
+function forEach<T>(elems:T, action:(elem:T) => void) : void {
+	let i:number;
+	for(i = 0; i < elems.length; i++) {
+		action(elems[i]);
+	}
+}
+
+
+let nos:number[] = [6,22,67,1,13,56,19];
+
+forEach(nos, console.log);
+forEach(nos, alert);
+
+let names:string[] = ["harry", "peter", "danny", "James"];
+forEach(names, console.log);
 
 
 
+for(i = 0; i < nos.length; i++) {
+		alert(nos[i]);
+}
+for(i = 0; i < nos.length; i++) {
+		console.log(nos[i]);
+}
 
 
+
+map, filter, reduce, limit, skip, flatMap
+
+map(transformFn) ==> transformed data
+
+filter(predicate) ==> subset
 
 
