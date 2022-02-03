@@ -581,5 +581,124 @@ let duplicate = {...p} ; // copy of object
 
 
 
+Day 1 : JS, Typescipt type ==> strng, boolean, number, enum, object, array
+"type" to define a type, 'interface' , "as" , "in", REST parameters, spread operator;
+
+function add(x: number, y: number)  {
+	return x + y;
+}
+
+let res = add(4,5);
+
+Day 2
+
+
+Synchronous methods:
+
+let result = doTask(); ==> directly to stack
+console.log("blocked.... until doTask() completes");
+
+Promise API
+	is for asynchronous task ==> anything using callback queue then to stack
+
+	==> possible return type is resolved or rejected
+
+
+	doTask() ==> Promise<Pending>
+		RESOLVED
+		REJECTED
+
+  doTask().then(function(data) {
+
+
+  }, function(err) {
+
+  });
+
+  console.log("not blocked!!!");
+
+ ==============
+
+
+ interface User {
+ id:number,
+ name:string
+}
+
+function fetchData(id:number): Promise<User> {
+  return new Promise<User> (function(resolve, reject) {
+    setTimeout(function() {
+       resolve({"id": 5, "name": "Banuprakash"}); // data from server
+     // reject("Not found");
+   }, 2000);
+ });
+}
+
+fetchData(5).then(function(data) {
+  console.log(data);
+},
+function(err) {
+ console.log("Boom :-(", err);
+});
+
+
+console.log("not blocked!!!");
+
+// tsc --lib ES2015,dom promiseExample.ts
+// node promiseExample.js
+
+
+=======
+Arrow functions:
+
+interface User {
+ id:number,
+ name:string
+}
+
+function fetchData(id:number): Promise<User> {
+  return new Promise<User> ((resolve, reject) => {
+    setTimeout(() => {
+       resolve({"id": 5, "name": "Banuprakash"}); // data from server
+     // reject("Not found");
+   }, 2000);
+ });
+}
+
+fetchData(5).then(
+data => console.log(data),
+err => console.log("Boom :-(", err)
+);
+
+console.log("not blocked!!!");
+
+// tsc --lib ES2015,dom promiseExample.ts
+// node promiseExample.js
+
+======================
+chaining of promises:
+
+fetch("https://jsonplaceholder.typicode.com/users/2")
+.then(response => response.json())
+.then(data => console.log(data));
+
+=====
+
+fetch(.../departments)
+.then(depts ==> getEmployees(dept))
+.then(emp ==> getAddress(emp))
+.then(add ==> ..)
+
+
+===========================
+
+Async and Await ==> simplifiy using Promise API
+
+
+
+
+
+
+
 
 
