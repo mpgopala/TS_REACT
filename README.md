@@ -514,6 +514,7 @@ btn.backgroundColor = 'red';
 
 Using "in" operator for Narrowing
 
+```
 type Circle = {
 	radius : number;
 }
@@ -531,11 +532,12 @@ function computeArea(shape: Circle | Rectangle) {
 		}
 }
 
+```
 ===========
 
 TypeScript REST parameters
 
-
+```
 function getTotal(...numbers: number[]) :number {
 	let total: number = 0;
 	numbers.forEach(n => total + n);
@@ -545,7 +547,7 @@ function getTotal(...numbers: number[]) :number {
 console.log(getTotal()); // 0
 console.log(getTotal(10,20)); // 30
 console.log(getTotal(10, 20, 30)); // 60
-
+```
 without
 
 let data:number[] = [5,6,2,3,2,1];
@@ -594,7 +596,7 @@ Day 2
 
 
 Synchronous methods:
-
+```
 let result = doTask(); ==> directly to stack
 console.log("blocked.... until doTask() completes");
 
@@ -647,10 +649,11 @@ console.log("not blocked!!!");
 // tsc --lib ES2015,dom promiseExample.ts
 // node promiseExample.js
 
+```
 
 =======
 Arrow functions:
-
+```
 interface User {
  id:number,
  name:string
@@ -671,6 +674,8 @@ err => console.log("Boom :-(", err)
 );
 
 console.log("not blocked!!!");
+
+```
 
 // tsc --lib ES2015,dom promiseExample.ts
 // node promiseExample.js
@@ -693,7 +698,7 @@ fetch(.../departments)
 ===========================
 
 Async and Await ==> simplifiy using Promise API
-
+```
 
 interface User {
  id:number,
@@ -710,6 +715,7 @@ fetchData(2).then(user => console.log(user));
 
 console.log("not blocked!!!");
 
+```
 // tsc --lib ES2015,dom asyncExample.ts
 // node asyncExample.js won't work
 
@@ -723,7 +729,7 @@ High Order Functions in TypeScript
 * function returning a function
 
 Generics <>
-
+```
 function forEach<T>(elems:T, action:(elem:T) => void) : void {
 	let i:number;
 	for(i = 0; i < elems.length; i++) {
@@ -750,13 +756,13 @@ for(i = 0; i < nos.length; i++) {
 }
 
 
-
 map, filter, reduce, limit, skip, flatMap
 
 map(transformFn) ==> transformed data
 
 filter(predicate) ==> subset
 
+```
 
 https://rxmarbles.com/
 
@@ -768,6 +774,7 @@ Whenever a function returns a function; returned function has access to all the 
 using Closure [ scope pointer]
 
 pure function:
+```
 function add(x, y) {
 	return x + y;
 }
@@ -785,8 +792,9 @@ let fiveAdder = adder(5);
 console.log(fiveAdder(2)); // 7
 console.log(fiveAdder(5)); // 10
 
+```
 =============================================
-
+```
 getEmp(5); ==> REST api call ==> server ==> DB ==> server ==> json
 
 getEmp(5); ==> cache
@@ -807,6 +815,7 @@ console.time("sec");
  console.log(fibanocci(34));
 console.timeEnd("sec");
 
+```
 ==============
 
 Memoization pattern:In computing, memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again
@@ -830,6 +839,7 @@ index.html
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
 my.ts
+```
 declare var random:any;
 
 function doTask(){
@@ -852,6 +862,7 @@ function doTask(){
 	console.log(random(1,100));
 }
 
+```
 
 Approach 3)
  https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -884,6 +895,7 @@ webpackexample>tsc --init
 creates tsconfig.json
 
 ===
+```
 export default class Person {
     private name:string;
     private age:number;
@@ -914,6 +926,7 @@ package.json
   
 }
 
+```
 npm run dev
  
 
@@ -951,7 +964,19 @@ runtime.dw34sr33.js
 <script src="vendor.sdfsdf2324.js"></script>
 
 =======================
+Webpack Dev Server
+Use webpack with a development server that provides live reloading.
 
+ "scripts": {
+    "start": "webpack serve --open --mode production",
+
+  npm start
+
+====================
+
+Day 3
+
+------
 
 
 
