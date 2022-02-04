@@ -1198,27 +1198,67 @@ ReactDOM.render(<ProductList title="List of Products" products={productsData} />
 
 ```
 
+1) React.createElement
+2) Functional component ==> returned JSX value becomes ReactElement
+3) Class Component
+  3.1) state and behaviour
+  3.2) component life cycle methods
+  	componentDidMount
+  	componentWillUnmount
+  	shouldComponentUpdate
+
+ 
+```
+class ProductList extends React.Component {
+ state = {
+ 	"products": [
+        {"id":1,"name":"iPhone","price":124447.44,"category" : "mobile"},
+        {"id":2,"name":"Onida","price":4444.44,"category" : "tv"},
+        {"id":3,"name":"OnePlus 6","price":98444.44,"category" : "mobile"},
+        {"id":4,"name":"HDMI connector","price":2444.00,"category" : "computer"},
+        {"id":5,"name":"Samsung","price":68000.00,"category" : "tv"}
+	]
+ }
+ constructor(props) {
+ 	super(props);
+ }
+ //JSX
+ render() {
+  	return <div>
+    		<h1>{this.props.title}</h1>
+    		{
+    			this.state.products.map(p => <Product product={p} key={p.id} />)
+    		}
+  		 </div>
+  }
+}
+
+function Product({product}) {
+  	return <div>
+  		Name : {product.name} <br />
+  		Price : {product.price}	
+  		<hr />
+  	</div>
+}
+ReactDOM.render(<ProductList title="List of Products"   />, document.getElementById("root"));
+
+```
+
+Adding Behaviour:
+
+class ProductList extends React.Component {
+	...
+
+	deleteProduct(id){
+
+	}
+
+}
+
+```
+
+npx create-react-app customerapp --template typescript
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+builds scaffolding code using webpack
 

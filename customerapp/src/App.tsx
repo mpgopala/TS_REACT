@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Parent from './trials/Parent';
+import Welcome from './trials/Welcome';
+import WelcomeFC from './trials/WelcomeFC';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React Application</h1>
+      <WelcomeFC />
+      <WelcomeFC msg="Working FC comp">
+        <h3>Child data!!!</h3>
+      </WelcomeFC>
     </div>
   );
 }
