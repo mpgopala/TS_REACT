@@ -978,6 +978,187 @@ Day 3
 
 ------
 
+yarn add lodash @types/lodash
+
+
+filename: 'bundle.js'
+	==> contains all our compiled "ts" files + 'libraries from node_modules'
+
+Webpack code splitting
+
+	create many chunk files
+
+	main.454dfsfdfsf.js ==> our "compiled ts"
+	runtime.f4534534fsdf.js ==> React / Angular
+	vendor.453453dfdg.js ==> files from "node_modules" [ lodash]
+
+==================================================================
+
+
+React.js
+
+Rendering ==> data is converted into presentation
+
+Server Side Rendering [SSR]
+
+server renders and sends presentation page [HTML / PDF /Image] to client ==> tight coupling
+
+Traditional Web application devlopment ==> Servlet and JSP, ASP, ASP.NET, PHP, Next.JS
+
+Templates: JSP, ASP, EJS, JADE , PUG, PHP
+
+<ul>
+  <% users.forEach(function(user){ %>
+    <%- include('user/show', {user: user}); %>
+  <% }); %>
+</ul>
+
+Client Side Rendering:
+data is sent to client ==> rendered on client machine ==> loose coupling ==> seperation of client-server logic
+
+Templates: jQuery, Mustache {{ , Handlebars #, underscore _
+Hello {{name}}
+
+Web pages ==> web applications and SPA ==> Single Page application
+
+SPA -=> index.html for the entire project
+render different views
+
+Frameworks MVC ==> Model, View, Controller:
+Model <--> Controller <--> View
+
+Backbone, Angular.JS, Angular 
+
+Framework ==> total solution [Model for state management, view, services ==> HTTP, Router, ...]
+
+Library:
+Knockout, React ==> View Libraries
+
+=====================================================
+codepen.io
+settings:
+JS preprocessor ==> babel
+
+Js libraries:
+https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js
+https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js
+
+===
+
+Reconciliation
+
+ReactElement ==> Virtual DOM ==> DOM
+
+```
+let Welcome = React.createElement("h1", {style:{'color':'green'}}, "Welcome to React");
+console.log(Welcome);
+
+ReactDOM.render(Welcome, document.getElementById("root"));
+```
+
+First Reconciliation happens when we call render()
+
+```
+render()
+
+var h1 = document.createElement("h1");
+h1.appendChild("Welcome to React");
+h1.addAttribute("style", ...);
+document.getElementById("root").appendChild(h1);
+```
+
+Diff algorithm
+
+between 2 VDOMS
+```
+const diffs = [
+	{
+		newNode : { <li> 1</li>},
+		oldNode: { <li>One </li>},
+		index: 0
+	},
+	{
+		newNode : { <li>Four</li>},
+		index: 3
+	}
+];
+
+
+Re-Render
+
+diffs.forEach( diff => {
+	if(diff.oldNode) {
+		document.replaceChild(diff.newNode, diff.index);
+	} else {
+		document.appendChi(diff.newNode)
+	}
+
+});
+	
+```
+===========================================================
+
+
+* Functional Components 
+* Class Components
+
+```
+function Welcome() { // JSX
+  return <div>
+    <h1> Learning React </h1>
+    <h2>Place Virtual</h2>
+   </div>
+}
+
+ReactDOM.render(<Welcome/>, document.getElementById("root"));
+
+```
+
+return value of JSX becomes ReactElement
+
+Babel converts above code into
+
+React.createElement("div", null, "h1", "Learning React " , ...);
+
+===
+
+Props ==> data passed from parent to child ==> html terminology "attributes" => angular [@Input()]
+
+```
+function Welcome(props) { // JSX
+  return <div>
+    <h1> {props.title} </h1>
+    <h2>Place {props.loc}</h2>
+   </div>
+}
+
+ReactDOM.render(<Welcome title="Learning React" loc="Virtual"/>, document.getElementById("root"));
+
+also we can use
+
+function Welcome({title, loc}) { // JSX
+  return <div>
+    <h1> {title} </h1>
+    <h2>Place {loc}</h2>
+   </div>
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
