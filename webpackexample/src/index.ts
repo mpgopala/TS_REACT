@@ -1,5 +1,11 @@
+import './styles.css';
+
 import {add, sub} from './compute';
 import Person from './Person';
+
+import {random} from 'lodash';
+
+console.log("Random :" + random(1,100));
 
 console.log("Hello World!!!");
 
