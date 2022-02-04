@@ -1,5 +1,4 @@
 import React from 'react';
-import Welcome from './Welcome';
 
 interface Props {
     msg?:string
