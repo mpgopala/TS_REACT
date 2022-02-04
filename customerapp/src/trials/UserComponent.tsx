@@ -6,9 +6,9 @@ interface IUser {
 }
 
 export default class UserComponent extends  React.Component<IUser, {}> {
-    constructor(props:IUser) {
-        super(props);
-    }
+    // constructor(props:IUser) {
+    //     super(props);
+    // }
 
     render() {
         let {name,age} = this.props;
