@@ -1314,3 +1314,40 @@ interface Ingredient {
 
 Day 4
 
+------
+
+ App.tsx
+ components/
+ 	CustomerList.tsx
+ 	CustomerRow.tsx
+ 	Filter.tsx
+model/
+	ICustomer.tsx
+
+
+customerapp>yarn
+
+ delEvent={(id) => this.deleteCustomer(id)}
+ or
+ delEvent={this.deleteCustomer.bind(this)}
+
+let p = {
+	name: "Peter",
+	doTask: function() {
+		console.log(this.name);
+	}
+}
+
+p.doTask();
+
+let ref = p.doTask; // function reference ==> here context is lost
+
+ref();
+
+let ref2 = p.doTask.bind(p);
+ref2();
+
+=======================
+
+
+
