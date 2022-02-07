@@ -9,7 +9,7 @@ describe("customer row tests", () => {
     };
 
     let callback = jest.fn(); // mock function
-
+    
     test("render customer Row", () => {
         render(<CustomerRow 
             key={c.id} 
