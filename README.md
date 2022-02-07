@@ -1262,3 +1262,55 @@ npx create-react-app customerapp --template typescript
 
 builds scaffolding code using webpack
 
+```
+import React from "react";
+
+export default function Welcome({msg} :{msg?:string}):React.ReactElement | null {
+    return <h1>Hello {msg}</h1>
+}
+
+App.tsx
+import Welcome from './trials/Welcome';
+
+  <Welcome />
+  <Welcome msg="Good Day"/>
+
+ ============
+
+Parent.tsx
+```
+import React from "react";
+
+export default function Parent({children}:{children:React.ReactNode}) {
+    return <div>Parent <br/> {children}</div>
+}
+```
+// <Parent></Parent>
+
+ App.tsx
+  <Parent>
+        <Welcome />
+        <Welcome msg="Good Day"/>
+      </Parent>
+
+================
+
+Task:
+
+interface Recipe {
+  name: string;
+  ingredients: Ingredient[];
+  steps: string[];
+}
+
+interface Ingredient {
+  name: string;
+  amount: number;
+  measurement: string;
+}
+
+==================
+
+
+Day 4
+
