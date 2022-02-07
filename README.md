@@ -1349,5 +1349,157 @@ ref2();
 
 =======================
 
+Filter.tsx
+CustomerList.tsx
+CustomerRow.tsx
+
+ 
+type IAppProps = {
+    customer: ICustomer,
+    delEvent:(id:number) =>void
+}
+export default function CustomerRow(props:IAppProps){
+     return <div className="row">
+            {firstName} &nbsp; {lastName} &nbsp;
+            <button onClick={()=> this.props.delEvent(id) }>&times;</button>
+        </div>
+}
+
+
+=========
+
+constructor(props:IAppProps) {
+        super(props);
+        this.state.complete = this.state.customers;
+    }
+
+    or
+
+   componentDidMount() {
+   	this.setState({
+   		"complete" : this.state.customers
+   	})
+   }
+
+* componentDidMount
+* componentDidUnMount
+
+constructor() ==> component is created ==> render() ==> componetDidMount() ==> any changes ==> render()
+
+componetDidMount() is a life cycle method where API calls needs to be done
+
+don't make async calls / api calls in constructor
+
+FCP ==> Web vitals ==> First Contentful Paint
+
+constructor() ==> mock data ==> render it
+API call gets data in componentDidMount() ==> re-render()
+
+=======================================================================
+
+Testing 
+* Unit Testing
+JavaScript ==> Mocha, Jasmine and JEST
+React ==> React Testing Libarary ==> RTL ==> built-in to use JEST
+Angular Test Bed ==> use Jasmine
+
+* E2E Testing
+Angular ==> Protractor
+Selenium
+React ==> Cypress
+
+--
+
+RTL and Cypress
+
+Alternate to RTL is Enzyme
+
+=====================
+
+RTL library has different methods to query components
+
+* getBy or getAllBy ===> throw exception if match not found
+	getByLabelText
+	getByText
+	getByRole
+	getByPlaceholderText
+	getByAltText
+
+	<h1>React Application</h1>
+
+	getByText(/React/i)
+
+	 <input type="text" 
+            placeholder="search by name" 
+            onChange={(evt) => props.filterEvent(evt.target.value)} />
+
+     getByPlaceholderText("search by name")
+
+
+     getAllByRole('button');
+
+* queryBy ==> return null if match not found
+
+* findBy ==> for Async components
+
+==> any time you can use low-level DOM apis to access component
+
+============
+
+Test Suite ==> one file one test suite
+
+or
+
+describe("customer module", ()=> {
+	it("test delete", () => {
+		action
+		assert
+	});
+	it("test filter", () =>{
+		action
+		assert
+	})
+});
+
+describe("product module", () => {
+	test("delete product", () =>{
+		ACTION
+		assert
+	})
+});
+
+
+====
+DOM Render Code:
+import ReactDOM from 'react-dom';
+ 
+ReactDOM.render(<App /> ,document.getElementById('root')); ==> DOM element ==> UI
+
+
+import { render, screen } from '@testing-library/react';
+
+ render(<App />); ==> DOM in HTML string is generated ==> no UI
+
+
+	
+==
+
+npm test
+
+Coverage:
+
+npm test -- --coverage --watchAll=false
+
+=======================
+
+Mock testing
+
+=========
+
+yarn add cypress -D
+
+============
+
+
 
 
