@@ -1500,6 +1500,8 @@ yarn add cypress -D
 
 ============
 
+Resume @ 4:35
+
 
 
 
