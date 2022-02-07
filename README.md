@@ -1498,9 +1498,153 @@ Mock testing
 
 yarn add cypress -D
 
+or
+
+npm i cypress -D
+
 ============
 
-Resume @ 4:35
+CustomerRow.test.tsx
+Testing in Isolation we need to mock customer data and callback:
+
+
+render(<CustomerRow 
+                    key={customer.id} 
+                    customer={mockCustomer}
+                    delEvent={callbackMock}
+             />);
+
+```
+screen.debug();         
+      <body>
+        <div>
+          <div
+            class="App"
+          >
+            <h1>
+              React Application
+            </h1>
+            <div>
+              <input
+                placeholder="search by name"
+                type="text"
+              />
+              <div
+                class="row"
+              >
+                Monica
+                  
+                Geller
+                  
+                <button>
+                  ×
+                </button>
+              </div>
+              <div
+                class="row"
+              >
+                Ross
+                  
+                Geller
+                  
+                <button>
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </body>
+ 
+ ```
+
+ Cypress:
+ script
+ "e2e" : "cypress open"
+modify:
+cypress.json
+add test specs in "e2e" folder
+
+npm run e2e
+
+====================================
+
+npx create-react-app shopapp --template typescript
+
+shopapp>yarn add bootstrap styled-components @types/styled-components react-router-dom
+
+shopapp> yarn add axios
+
+---------------
+
+React Hooks
+
+Hooks are a new addition in React 16.8. 
+Hooks can be used only in functional component
+They let you use state, lifecycle method and other React features without writing a class.
+
+current version ==> 17.0.2
+
+1) useState
+
+import React from "react";
+
+export default function StateHookComponent() {
+    let [count, setCount] = React.useState<number>(0)
+    let [user, setUser] = React.useState<string>("Smith");
+    return <>
+        Count {count} <br />
+        User {user} <br />
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+    </>
+}
+
+instead of:
+
+
+type IAppProps {
+	count:number,
+	user: string
+}
+
+class StateHookComponent extends Component<IAppProps> {
+	state = {
+		count: 0,
+		user: string
+	}
+
+	setCount(data) {
+		this.setState({
+			count = data;
+		})
+	}
+
+	setUser(data) {
+		this.setState({
+			user: data
+		})
+	}
+}
+
+
+==============
+
+ return <>
+    
+    </>
+
+instead of:
+ return <div>
+</div>
+
+return <React.Fragment>
+
+</React.Fragment>
+
+
+
+
+
 
 
 
