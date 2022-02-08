@@ -1610,7 +1610,7 @@ type IAppProps {
 class StateHookComponent extends Component<IAppProps> {
 	state = {
 		count: 0,
-		user: string
+		user: "Smith"
 	}
 
 	setCount(data) {
@@ -1643,11 +1643,297 @@ return <React.Fragment>
 
 ================
 
+Day 5
+
+component re-renders only if state or props change ==> Reconciation
+
+forceUpdate();
 
 
 
+React Hooks ==> 16.8 ==> instead of class components using functional components
+
+1) useState()
+	state is like number, boolean, string
+2) useReducer()
+
+==> if state is complex
+	CART application
+
+	[{
+		product:{....},
+		count: 3,
+		total:89000
+	},
+	{
+		product:{....},
+		count: 1,
+		total:89000
+	}
+	]
+
+==> conditionally mutate the state => Action
+	ADD_TO_CART
+	INCREMENT
+	DECREMENT
+	CLEAR
+	REMOVE_FROM_CART
+	GET_CART
+
+--------------------------
+
+```
+
+import { stat } from 'fs';
+import React from 'react';
+enum ActionType {
+    INCREMENT,
+    DECREMENT
+}
+
+type Action = {
+    type:ActionType
+    payload?:number
+}
+
+type StateType = {
+    count:number
+}
 
 
+let countReducer = (state:StateType, action:Action) => {
+    switch(action.type) {
+        case ActionType.INCREMENT:
+            if(action.payload){
+                return {count: state.count + action.payload}
+            } else 
+            return {count: state.count + 1}
+        case ActionType.DECREMENT:
+            return {count: state.count - 1}
+        default:
+            return state;
+    }
+}
+
+let initialState:StateType = {
+    count:0
+}
+
+export default function ReducerComponent() {
+    let [state, dispatch] = React.useReducer(countReducer, initialState);
+    function handleIncrement() {
+        let action = {"type": ActionType.INCREMENT, payload: 10};
+        dispatch(action);
+    }
+    return <>
+        Count {state.count} <br />
+        <button onClick={handleIncrement}>Increment</button>
+    </>
+}
+
+```
 
 
+3) useEffect
+	==> to simulate Component lifecycle methods
+	componentDidMount() ==> constuctor() ==> render() ==> componentDidMount()
+	componentDidUpdate() ==> changes to state or props 
 
+4) useRef
+```
+
+
+export default function UseRefComponent() {
+    let [name,setName] = React.useState<string>("");
+    let [age,setAge] = React.useState<string>("");
+    function handleClick() {
+        // need to access data in text box ?
+        console.log(name, age);
+    }
+    return <>
+        <input type="text" onChange={evt => setName(evt.target.value)}/>
+        <input type="text" onChange={evt => setAge(evt.target.value)}/>
+        <button onClick={handleClick}>Do Task</button>
+    </>
+}
+
+using useRef()
+
+import React, { MutableRefObject } from "react";
+
+export default function UseRefComponent() {
+    const inputEl = React.useRef() as MutableRefObject<HTMLInputElement>;
+    function handleClick() {
+        console.log(inputEl.current.value);     
+    }
+    return <>
+        <input type="text" ref={inputEl}/>
+        <button onClick={handleClick}>Do Task</button>
+    </>
+}
+
+```
+
+forwardRef
+
+a mechanism using which parent passes "ref" to child
+
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+
+Parent component ==> Class Component
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref} alt="Hello" color="red">Click me!</FancyButton>;
+
+ref.click(); or any functionality of button is accessble to Parent
+
+
+============
+
+Parent - child re-render issues
+==> props or state changes component re-renders ==> triggers all children to re-render
+```
+
+
+class Child extends React.Component {
+	render() {
+		console.log("child re-renders!!!");
+		return <>
+				<h1>Child {this.props.name} </h1>
+			</>
+	}
+}
+
+
+class Parent extends React.Component {
+	state = {
+		count: 0,
+		name : "Banu"
+	}
+
+	increment() {
+		this.setState( {
+			count: this.state.count + 1
+		})
+	}
+
+	render() {
+			console.log("parent re-renders!!!");
+			return <>
+				Count : {this.state.count} <br />
+				<Child name={this.state.name} />
+				<button onClick={() => this.increment()}>Increment</button>
+			</>
+	}
+}
+
+ReactDOM.render(<Parent />, document.getElementById("root"))
+
+```
+
+Solution 1:
+use Component Life Cycle method ==> shouldComponentUpdate
+
+```
+
+class Child extends React.Component {
+ 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.name !== nextProps.name;
+  }
+	render() {
+		console.log("child re-renders!!!");
+		return <>
+				<h1>Child {this.props.name} </h1>
+			</>
+	}
+}
+
+```
+
+Solution 2:
+using Purecomponent ==> comes wiht defaule shouldComponentUpdate with shallow comparision
+and not deep
+
+```
+class Child extends React.PureComponent {
+   render() {
+		console.log("child re-renders!!!");
+		return <>
+				<h1>Child {this.props.name} </h1>
+			</>
+	}
+}
+
+```
+use shouldComponentUpdate if props is complex type ==> object, array
+
+<Child customer={customer} />
+
+===
+
+Avoid re-render in functional components
+
+function Child(props) {
+		console.log("child re-renders!!!");
+		return <div>
+				<h1>Child {props.name} </h1>
+			</div>
+}
+
+We have React.memo() ==> Memoize pattern
+
+```
+
+function Child(props) {
+		console.log("child re-renders!!!");
+		return <>
+				<h1>Child {props.name} </h1>
+			</>
+}
+
+const MemoChild = React.memo(Child); // HOC
+
+class Parent extends React.Component {
+	state = {
+		count: 0,
+		name : "Banu"
+	}
+
+	increment() {
+		this.setState( {
+			count: this.state.count + 1
+		})
+	}
+
+	render() {
+			console.log("parent re-renders!!!");
+			return <>
+				Count : {this.state.count} <br />
+				<MemoChild name={this.state.name} />
+				<button onClick={() => this.increment()}>Increment</button>
+			</>
+	}
+}
+
+ReactDOM.render(<Parent />, document.getElementById("root"))
+
+```
+function applyChanges(props, nextProps) {
+	compare and return true / false
+}
+
+const MemoChild = React.memo(Child, applyChanges);
+
+=======================
+
+Resume @ 4:50
+memo_callback.js
+
+========
