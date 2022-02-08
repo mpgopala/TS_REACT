@@ -1925,14 +1925,93 @@ class Parent extends React.Component {
 ReactDOM.render(<Parent />, document.getElementById("root"))
 
 ```
-function applyChanges(props, nextProps) {
+function hasChanged(props, nextProps) {
 	compare and return true / false
 }
 
-const MemoChild = React.memo(Child, applyChanges);
+const MemoChild = React.memo(Child, hasChanged);
 
 =======================
  
 memo_callback.js
 
 ========
+
+5) useCallback
+	like memoizing data we memoize callback
+
+```
+	 const incrementAge = React.useCallback(() => {
+		setAge(age + 1)
+	}, [age]);
+
+	const incrementSalary = React.useCallback(() => {
+   		setSalary(salary + 1000)
+	}, [salary]);
+
+```
+Complete Code:
+
+`````
+
+function Title() {
+  console.log('Rendering Title')
+  return (
+    <h2>
+      Example: Title
+    </h2>
+  )
+};
+
+
+function Button({ handleClick, children }) {
+  console.log('Rendering button - ', children)
+  return (
+    <button onClick={handleClick}>
+      {children}
+    </button>
+  )
+}
+
+function Count({ text, count }) {
+	console.log(`Rendering ${text}`)
+	return <div>{text} - {count}</div>
+}
+
+const MemoTitle = React.memo(Title);
+const MemoButton = React.memo(Button);
+const MemoCount = React.memo(Count);
+
+function ParentComponent() {
+	const [age, setAge] = React.useState(25)
+	const [salary, setSalary] = React.useState(50000)
+
+	 const incrementAge = React.useCallback(() => {
+		setAge(age + 1)
+	}, [age]);
+
+	const incrementSalary = React.useCallback(() => {
+   		setSalary(salary + 1000)
+	}, [salary]);
+  
+  
+	return (
+		<div>
+			<MemoTitle />
+			<MemoCount text="Age" count={age} />
+			<MemoButton handleClick={incrementAge}>Increment Age</MemoButton>
+			<MemoCount text="Salary" count={salary} />
+			<MemoButton handleClick={incrementSalary}>Increment Salary</MemoButton>
+		</div>
+	)
+}
+
+ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
+
+````
+
+6) Custom Hooks
+
+	* starts with "use"
+	* built using already existing hooks
+	
