@@ -1932,8 +1932,7 @@ function applyChanges(props, nextProps) {
 const MemoChild = React.memo(Child, applyChanges);
 
 =======================
-
-Resume @ 4:50
+ 
 memo_callback.js
 
 ========

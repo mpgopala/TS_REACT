@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import CustomerList from './components/CustomerList';
+import CustomHookComponent from './hooks/CustomHookComponent';
 import EffectHook from './hooks/EffectHook';
 import ReducerComponent from './hooks/ReducerComponent';
 import StateHookComponent from './hooks/StateHookComponent';
@@ -14,7 +15,8 @@ function App() {
      {/* <StateHookComponent /> */}
      {/* <ReducerComponent/> */}
      {/* <EffectHook/> */}
-     <UseRefComponent/>
+     {/* <UseRefComponent/> */}
+     <CustomHookComponent/>
     </div>
   );
 }
