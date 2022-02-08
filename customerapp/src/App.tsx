@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import CustomerList from './components/CustomerList';
+import ReducerComponent from './hooks/ReducerComponent';
 import StateHookComponent from './hooks/StateHookComponent';
  
 function App() {
@@ -8,7 +9,8 @@ function App() {
     <div className="App">
       <h1>React Application</h1>
      {/* <CustomerList /> */}
-     <StateHookComponent />
+     {/* <StateHookComponent /> */}
+     <ReducerComponent/>
     </div>
   );
 }
