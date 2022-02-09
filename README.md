@@ -2244,12 +2244,24 @@ overwrite "Navbar.tsx"
 place "Button.tsx" in "components" folder
 
 
+====================
 
-===================
+import {Link} from 'react-router-dom';
+
+  <Link to="/products" className="nav-link">   
+                    Products
+  </Link>   
+ uses HTML5 history API
+ ==> navigate between views in SPA
+
+instead of
+
+<a href="/products"> ==> make a call to server ==> server-side rendered
 
 
 
 
+Resume @ 4:35
 
 
 

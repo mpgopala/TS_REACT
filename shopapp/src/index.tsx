@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { ProductProvider } from './context/ProductContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ProductProvider>
     <App />
-  </React.StrictMode>,
+  </ProductProvider>,
   document.getElementById('root')
 );
- 
