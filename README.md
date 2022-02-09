@@ -2014,4 +2014,10 @@ ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
 
 	* starts with "use"
 	* built using already existing hooks
-	
+
+==============
+
+HOC
+react-router-dom
+ReactContext
+Redux
