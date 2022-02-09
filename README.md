@@ -2184,6 +2184,57 @@ function Second() {
 
 ```
 
+react-router-dom
+
+configure routes
+
+ <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/products" element={<ProductList/>} />
+            <Route path="/cart" element={<Cart/>} />
+            <Route path="/details/:id" element={<Details/>} />
+            <Route path="/" element={<ProductList/>} />
+            <Route path="*" element={<Default />} />
+          </Routes>
+</BrowserRouter>
+
+-----------
+
+Lazy loading of modules 
+
+Cart module ==> lazy loading
+
+
+const Cart  = React.lazy(() => import('./components/Cart'));
+
+function App() {
+  return (
+    <div>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/products" element={<ProductList/>} />
+            <Route path="/cart" element={
+              <Suspense fallback={<h1>Loading....</h1>}>
+                  <Cart />
+              </Suspense>
+            } />
+            <Route path="/details/:id" element={<Details/>} />
+            <Route path="/" element={<ProductList/>} />
+            <Route path="*" element={<Default />} />
+          </Routes>
+        </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+
+
+==========
+
+
 
 
 
