@@ -2234,6 +2234,21 @@ export default App;
 
 ==========
 
+download "share.zip", data.js, App.css from "github"
+
+
+copy "images" folder into "public"
+overwrite App.css
+place "data.js" in "src" folder
+overwrite "Navbar.tsx"
+place "Button.tsx" in "components" folder
+
+
+
+===================
+
+
+
 
 
 
