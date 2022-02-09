@@ -2017,7 +2017,26 @@ ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
 
 ==============
 
-HOC
-react-router-dom
-ReactContext
-Redux
+ Day 6
+ 
+ React Hooks
+ 1) useState
+ 2) useReducer
+ 3) useRef ==> React.createRef()
+ 4) useEffect 
+ 5) custom hooks
+ 6) useCallback()
+
+ ---
+ React.memo(); ==> HOC ==> memoize pattern
+ shouldComponent()
+ PureComponent
+
+ ----------
+
+ npx create-react-app shopapp --template typescript
+ yarn add bootstrap styled-components @types/styled-components react-router-dom
+
+
+ 
+
