@@ -2035,8 +2035,160 @@ ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
  ----------
 
  npx create-react-app shopapp --template typescript
- yarn add bootstrap styled-components @types/styled-components react-router-dom
+ yarn add bootstrap styled-components @types/styled-components react-router-dom axios
+
+ ------------
+
+ HOC ==> high order component
+ * to inject new props
+ * conditionally render a component
+
+ ==> Composition pattern ==> Decorator pattern
+
+CustomerList.tsx
+
+HOC 
+function withLoading(WrappedComponent) {
+	return function({isLoading, ...props}) {
+		if(!isLoading) return <WrappedComponent {...props} /> 
+		else return <h1>loading.... </h1>
+	}
+}
+
+const WithLoadingCustomerList = withLoading(CustomerList);
+
+class App extends Component {
+	state = {
+		loading: true,
+		data: null
+	};
+
+	componentDidMount() {
+			api call and set
+			loading and data
+	}
+
+	render() {
+		return <WithLoadingCustomerList isLoading={loading} customers={data} />
+	}
+
+}
+
+=========
+
+function DivComponent(props) {
+	return <div>
+		Count : {props.count}
+		<button onClick={() => props.increment()}>Click </button>
+	</div>
+}
+
+const withCounter = (WrappedComponent) => {
+	return class extends Component {
+		constructor(props) {
+			super(props);
+			this.state = {
+				count : 0
+			}
+		}
+
+		increment = () => {
+			this.setState({
+				count: this.state.count  + 1
+			})
+		}
+
+		render() {
+			return <WrappedComponent count={this.state.count} increment={this.increment} />
+		}
+	}
+}
 
 
- 
+====
+	CustomerList.tsx
+	withSecurity(withLoading(CustomerList))
+
+=========================
+
+
+React Context
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+```
+var PersonContext = React.createContext();
+
+class PersonProvider extends React.Component {
+  state = {
+    name : 'Smith',
+    email : "",
+     update : this.update.bind(this)
+  };
+  
+  update(email) {
+    this.setState({
+        "email": email
+    });
+   }
+  
+  render() {
+    return <PersonContext.Provider value={this.state}>
+        {this.props.children}
+      </PersonContext.Provider>
+  }
+}
+
+class App extends React.Component{
+  render() {
+    return <PersonProvider>
+        <First />
+       </PersonProvider>
+  }
+}
+
+class First extends React.Component {
+  render() {
+     return <Second/>
+  }
+}
+
+class Second extends React.Component {
+  render() {
+    return <PersonContext.Consumer>
+            {
+              value => { 
+                return <React.Fragment>
+                  <h1> {value.name} {value.email}</h1>  
+                  <button onClick={() => value.update('smith@adobe.com')}>Change</button>
+                  </React.Fragment>
+              }
+      }
+      </PersonContext.Consumer>
+  }
+}
+
+ReactDOM.render(<App/>, document.getElementById("app"))
+
+using Hooks
+
+function Second() {
+  	let {name, email, updateEmail} = React.useContext(PersonContext);
+         return <React.Fragment>
+                  <h1> {name} {email}</h1>  
+                  <button onClick={() => update('smith@adobe.com')}>Change</button>
+                  </React.Fragment>
+             
+  }
+}
+
+
+```
+
+
+
+
+
+
+
+
 
