@@ -1,4 +1,6 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 import IProduct from "../model/IProduct";
 import { Button } from "./Button";
 
@@ -8,6 +10,7 @@ type IAppProps = {
 
 function Product(props:IAppProps) {
     let {id, name, image} = props.product;
+    let {addToCart} = React.useContext(CartContext);
     return (
         <div className="col-md-4 col-lg-3">
             <div className="card my-2">
@@ -15,7 +18,8 @@ function Product(props:IAppProps) {
                     <Link to={`/details/${id}`}>
                          <img src={image} alt={name} style={{width:'100%', height:'200px'}}/>
                     </Link>
-                    <Button className="cart-btn fa fa-cart-plus"/>
+                    <Button className="cart-btn fa fa-cart-plus" 
+                        onClick={() => addToCart(id)}/>
                 </div>
             </div>
         </div>
