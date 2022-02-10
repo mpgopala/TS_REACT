@@ -2336,6 +2336,64 @@ axios.patch(url[, data[, config]])
 
 ==================
 
+RESTful web server to serve JSON data
+==> Spring boot / ASP.net MVC RAZOR, PHP, ExpressJS nodeJS
+
+JSON Server
+Get a full fake REST API with zero coding in less than 30 seconds 
+
+json file as data
+
+{
+	"customers": [],
+	"products" : [],
+	"orders" : []
+}
+
+
+http://server/customers
+http://server/orders
+http://server/products
+http://server/products/4 ==> get by id
+http://server/products?price=2222 ==> query paramter
+
+CRUD operations ==> on JSON file
+
+data.json
+```
+{
+    "customers": [],
+    "orders" : [],
+    "products": [
+        {
+          "id": "1",
+          "name": "Accent Chair",
+          "price": 25999,
+          "image": "images/accent_chair.jpg"
+          
+        },
+        {
+          "id": "2",
+          "name": "Albany Sectional",
+          "price": 109999,
+          "image": "images/albany_sectional.jpg"
+        },
+        {
+          "id": "3",
+          "name": "Albany Table",
+          "price": 309999,
+          "image": "images/albany_table.jpg"
+        },
+        {
+          "id": "4",
+          "name": "Armchair",
+          "price": 12599,
+          "image": "images/armchair.jpg"
+        }]
+}
+```
+
+npx json-server --watch data.json --port 1234
 
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import cartReducer from "../reducer/cart_reducer";
 import { ProductContext } from "./ProductContext";
+import axios from 'axios';
 
 const initialState = {
     products:[],
@@ -21,7 +22,13 @@ export const CartProvider = (props) => {
     function increment(id) {
         dispatch({type:'INCREMENT', payload:id})
     }
-    return <CartContext.Provider value={{cart:state.products, addToCart:addToCart, increment:increment}}>
+
+    function checkout() {
+        axios.post("http://localhost:1234/orders", state).then(
+            console.log("order placed!!!")
+        )
+    }
+    return <CartContext.Provider value={{cart:state.products, addToCart:addToCart, increment:increment, checkout: checkout}}>
         {props.children}
     </CartContext.Provider>
 }

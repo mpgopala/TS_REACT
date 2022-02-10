@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import IProduct from "../model/IProduct";
-import {products} from '../data';
+// import {products} from '../data';
+
+import axios from 'axios';
 
 type ContextType = {
     products:IProduct[],
@@ -24,18 +26,27 @@ export class ProductProvider extends Component<{},StateType> {
         this.setProducts();
     }
     setProducts = () => {
-        let prds:IProduct[] = [];
-        products.forEach(p => prds.push({...p}));
-        this.setState({
-            products: prds
-        }, () => console.log("setProducts"))
-        
+        // let prds:IProduct[] = [];
+        // products.forEach(p => prds.push({...p}));
+        // this.setState({
+        //     products: prds
+        // }, () => console.log("setProducts"))
+
+        axios.get("http://localhost:1234/products")
+        .then(response => {
+            this.setState( {
+                products: response.data
+            })
+        })
+
     }
     handleDetail =(id:any):IProduct => {
         console.log("handleDetail")
         let prd:IProduct = this.state.products.filter(p => p.id === id)[0];
         return prd;
     }
+
+    
     render() {
         return <ProductContext.Provider value={{...this.state, handleDetail: this.handleDetail}}>
             {this.props.children}
