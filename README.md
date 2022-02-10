@@ -2396,6 +2396,95 @@ data.json
 npx json-server --watch data.json --port 1234
 
 
+==============================
+ 
+npx create-react-app reduxexample
+
+
+====================
+
+https://dev.to/ruppysuppy/redux-vs-context-api-when-to-use-them-4k3p
+
+==========================================================
+
+Redux
+
+1) Action Creators
+
+function addToCart(product) {
+	return {
+		type:"ADD_TO_CART",
+		payload: product
+	}
+}
+
+
+type: FETCH_PRODUCT
+
+StatusReducer
+	state: {
+		loading:true
+		error
+	}
+
+ProductReducer 
+state: {
+	product: ...
+}
+
+UserReducr
+
+statue {
+	user:
+}
+
+CartReducer {
+	cart:
+}
+
+
+yarn add redux react-redux
+
+The connect() function connects a React component to a Redux store.
+
+Redux store has
+state {
+	data : [],
+	done: false,
+	...
+}
+
+// state from redux
+// return as props to react component
+function mapStateToProps(state) {
+	return {
+		products: state.data,
+		isLoading: done
+	}
+}
+
+// dispatch refernce to reducer
+// props function given to react components to dispatch actiions to reducer
+function mapDispatchToProps(dispatch) {
+	addToCart: (id) => dispatch({type:"ADD_TO_CART", payload:id}),
+	clearCart: () => dispatch({type:"CLEAR_CART"})
+}
+
+connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(SmartComponent)
+
+
+=====================================
+
+* redux
+
+* redux MiddleWare:
+	thunk
+	saga
+
+==============
 
 
 

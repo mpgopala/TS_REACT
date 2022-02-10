@@ -28,7 +28,9 @@ export const CartProvider = (props) => {
             console.log("order placed!!!")
         )
     }
-    return <CartContext.Provider value={{cart:state.products, addToCart:addToCart, increment:increment, checkout: checkout}}>
+    return <CartContext.Provider value={{cart:state.products, 
+            addToCart:addToCart, 
+            increment:increment, checkout: checkout}}>
         {props.children}
     </CartContext.Provider>
 }

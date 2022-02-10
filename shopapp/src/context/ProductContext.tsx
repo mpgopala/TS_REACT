@@ -31,8 +31,8 @@ export class ProductProvider extends Component<{},StateType> {
         // this.setState({
         //     products: prds
         // }, () => console.log("setProducts"))
-
-        axios.get("http://localhost:1234/products")
+        
+        axios.get<IProduct[]>("http://localhost:1234/orders")
         .then(response => {
             this.setState( {
                 products: response.data
@@ -53,4 +53,5 @@ export class ProductProvider extends Component<{},StateType> {
         </ProductContext.Provider>
     }
 }
+
 
