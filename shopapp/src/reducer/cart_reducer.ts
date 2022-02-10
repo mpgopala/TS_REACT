@@ -19,7 +19,6 @@ type StateType = {
     total:number
 }
 
-
 let cartReducer = (state:StateType, action:Action) => {
     if(action.type === 'ADD_TO_CART') {
         const product = {...action.payload};
@@ -36,7 +35,13 @@ let cartReducer = (state:StateType, action:Action) => {
         let total = state.total + product.price;
         return {products:[...cartItems, {...item}], total}
     } else if (action.type === 'INCREMENT') {
-
+        const prd = state.products.filter(p => p.id === action.payload)[0]
+        prd.qty && prd.qty++;
+        if(prd.amount && prd.price) {
+            prd.amount += prd.price
+            state.total = state.total + prd.amount;
+        }
+        return {products:state.products, total: state.total};
     } else 
     return state;
 }
