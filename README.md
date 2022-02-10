@@ -2268,11 +2268,74 @@ Redux
 
 ====================================
 
+Day 7
+
+React-router-dom ==> BrowserRouter, Routes, Route, Link, useParams
+ReactContext
+
+Cart module
+------------
+
+Cart Context
+	cart:[],
+	addToCart()
+	increment()
+	decrement()
+	removeFromCart()
+
+==
+
+useReducer() instead of useState() 
+
+* cartReducer
+
+* CartContext
+	has a dependency on ProductContext ==> useContext() is a hook
+	use reducer
+
+1) cartReducer.ts
+
+2) CartContext.jsx
+
+3) Product.tsx
+ <Button onClick="">
 
 
+4) index.tsx
+ReactDOM.render(
+  <ProductProvider>
+    <CartProvider>
+      <App />
+    </CartProvider>
+  </ProductProvider>,
+  document.getElementById('root')
+);
 
+===================
+
+Cart.jsx
+CartList.jsx
+
+====================
+
+APi call
+
+yarn add axios
+
+axios.request(config)
+axios.get(url[, config])
+axios.delete(url[, config])
+axios.head(url[, config])
+axios.options(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
 
  
+==> fetch(url)
+
+==================
+
 
 
 
