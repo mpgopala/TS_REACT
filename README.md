@@ -2259,9 +2259,20 @@ instead of
 <a href="/products"> ==> make a call to server ==> server-side rendered
 
 
+============
+Reducer 
+CartContext.tsx
+================
+
+Redux
+
+====================================
 
 
-Resume @ 4:35
+
+
+
+ 
 
 
 
