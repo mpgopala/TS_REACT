@@ -2398,8 +2398,6 @@ npx json-server --watch data.json --port 1234
 
 ==============================
  
-npx create-react-app reduxexample
-
 
 ====================
 
@@ -2478,13 +2476,36 @@ connect(
 
 =====================================
 
-* redux
+Day 8
+npx create-react-app reduxexample
+yarn add redux react-redux
 
-* redux MiddleWare:
-	thunk
-	saga
 
-==============
+Redux ==> State Management 
+
+* Action object has {
+	type:
+	payload
+}
+
+* ActionCreators are functions which take data and returns Action Object
+
+* Store ==> Redux has a single store where state resides
+
+* Reducer ==> functions which read state from store takes dispatched action
+mutate the state and return the state to store. store updates
+
+* RootReducer if many reducers exist in application
+  compose({
+  	r1:...
+  	r2:...
+  	r3:...
+  })
+
+  * connect () is a react-redux
+  	state present in store ==> give it as props to component
+  	dispatch function of reducer => give it as props to component
+=======================================================
 
 
 
