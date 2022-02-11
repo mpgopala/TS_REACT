@@ -2687,3 +2687,55 @@ export default function Users() {
 
 
 ```
+
+
+npx create-next-app sampleapp
+
+Next.js supports SSR, CSR
+
+SSR ==> data from API call and serve static page to client
+
+CSR ==> pass data to client, render in client
+
+"pages" folder
+is place where you create your react components
+
+pages/ProductList.jsx
+
+pages/Cart.jsx
+
+http://server/ProductList
+http://server/Cart
+
+SSR
+
+export default function ProductList({products}) {
+	return <>
+		{
+			products.map(...)
+		}
+	</>
+}	
+
+
+export const getServerSideProps = async () => {
+	const res = axios.get(...)
+	return {
+		props: {
+			products:res
+		}
+	}
+}
+
+
+Cart.js
+CSR
+export defualt function Cart() {
+	useEffect(() => {
+		api call
+	})
+}
+
+
+
+
