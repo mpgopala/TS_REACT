@@ -10,8 +10,8 @@ export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case FETCH_USERS_REQUEST:
             return {
-                loading:true,
-                ...state
+              ...state,
+              loading:true
             }
         case FETCH_USERS_SUCCESS:
             return {
@@ -25,6 +25,7 @@ export const userReducer = (state = initialState, action) => {
                 users: [],
                 error: action.payload
             }
+
         default:
             return state;
     }

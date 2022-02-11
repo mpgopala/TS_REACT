@@ -2542,12 +2542,148 @@ https://www.npmjs.com/package/dotenv
 
 ===================================
 
-Resume @ 4:10
+ npx create-react-app reduxmiddleware
+ yarn add redux react-redux redux-thunk axios
+
+================
+
+Redux MiddleWare
+* redux thunk
+* redux saga
+* redux observables
+
+Redux middleware provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
+
+Redux is synchronous 
+Redux store doesn't know anything about async logic. It only knows how to synchronously dispatch actions
+
+view ==> dispatch(action) ==> reducer ==> updates the state ==> view gets the state
+view uses the state ==> dispatch(newaction)
+
+============
+React Redux hooks
+useSelector() The selector is approximately equivalent to the mapStateToProps argument to connect conceptually.
+
+let {contacts} = useSelector(state => state.contacts);
+
+is same as 
+
+function mapStateToProps(state) {
+	return {
+		contacts: state.contacts
+	}
+}
+
+connect(mapStateToProps,..)(App);
+
+useDispatch() similar to mapDispatchToProps(dispatch) { ...}
+
+====================
+https://redux.js.org/tutorials/essentials/part-5-async-logic
+
+Thunk middleware for Asyncronous actions.
+
+As of Redux ==> dispatch takes only action object.
+With Thunk we can dispatch functions
+
+Thunk intercepts dispatch ==> makes stage wise state update
+
+Thunk ==> dispatch(function) ==> make API call
+Thunk ==> dispatch(action) ==> call reducer to update the state
+
+===============================
+
+Redux-Saga
+
+uses ES6 generators ==> function with multiple return values
+
+function* fetchData() {
+	task1
+	task2
+	yield "A"
+	task3
+	task4
+	task5
+	yield "B"
+	task6
+	yield "C"
+}
+
+let iter = fetchData();
+
+iter.next(); // A
+
+check the returned value  and decide
+
+iter.next(); // B
+
+use "B"
+
+iter.next() // C
+
+================
+
+Saga
+
+call(function)
+
+put(action)
+
+
+Users.js for Thunk
+```
+import React from 'react';
+import {fetchUsers} from './redux/thunk/thunkapi';
+import { useSelector, useDispatch } from 'react-redux';
+
+export default function Users() {
+    let state = useSelector(state => state);
+    let dispatch = useDispatch();
+
+    let {loading, error, users} = state;
+    // componentDidMount
+    React.useEffect(() => {
+        dispatch(fetchUsers());
+    }, []);
+
+    return <>
+       {
+           loading? <h1>Loading..</h1> :
+           users.map(user => <h1 key={user.id}>{user.name}, {user.email}</h1>)
+       }
+    </>
+}
+
+```
+
+Users.js for Saga
+
+```
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {FETCH_USERS_REQUEST} from './redux/Actions';
+
+export default function Users() {
+    let state = useSelector(state => state);
+    let dispatch = useDispatch();
+
+    let {loading, error, users} = state;
+    // componentDidMount
+    React.useEffect(() => {
+        dispatch({type:FETCH_USERS_REQUEST}); 
+    }, []);
+
+    return <>
+        <button type="button"
+         onClick={()=>dispatch({type:FETCH_USERS_REQUEST})}>Reload</button>
+       {
+           loading? <h1>Loading..</h1> :
+           users.map(user => <h1 key={user.id}>{user.name}, {user.email}</h1>)
+       }
+    </>
+}
 
 
 
-
-
-
-
-
+```
