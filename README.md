@@ -2507,6 +2507,41 @@ mutate the state and return the state to store. store updates
   	dispatch function of reducer => give it as props to component
 =======================================================
 
+Contacts Application:
+ADD Contact
+Remove Contact
+
+Contact contains name and email
+
+
+export default combineReducers({
+    contacts: ContactReducer,
+    products: ProductReducer,
+    customers: CustomerReducer
+})
+
+redux store
+
+contacts: [state managed by ContactReducer]
+products: [state managed by ProductReducer]
+
+===
+
+import rootReducer from './redux/reducers';
+
+moduleResolution of nodejs uses "index.js" as entry point
+
+import React from 'react';
+
+useEffect.js
+usememo.js
+react.js
+useCallback.js
+
+https://www.npmjs.com/package/dotenv
+
+
+
 
 
 
